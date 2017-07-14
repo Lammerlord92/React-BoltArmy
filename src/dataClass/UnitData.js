@@ -62,9 +62,17 @@ class UnitData{
     this.unidades.forEach(
       (value,index)=>{
         if(indice===index){
-            this.unidades[index].numeroFusiles=value.numeroFusiles--;
+            this.unidades[index].numeroFusiles--;
 //            this.quitarMiembro();
 //              break;
+  this.unidades[index].cuposOcupados--;
+  this.unidades[index].habilitaAñadeFusilero=true;
+  if(this.unidades[index].cuposOcupados<=this.unidades[index].minEscuadra)
+    this.unidades[index].habilitaQuitaFusilero=false;
+
+this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
++this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
+
           }
         }
       )

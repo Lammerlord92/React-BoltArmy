@@ -25,8 +25,12 @@ class ArmyList extends Component {
                      </div>
                   </div>
                   <div id="unitOpt" className="row">
-                      <MiembrosEscuadra unit={value} indiceUn={index} añadeFusilero={
+                      <MiembrosEscuadra unit={value} indiceUn={index}
+                      añadeFusilero={
                         (index_d,evento_d)=>{VarUnitData.añadeFusilero(index_d,evento_d)}
+                      }
+                      quitaFusilero={
+                        (index_d,evento_d)=>{VarUnitData.quitaFusilero(index_d,evento_d)}
                       }/>
                   </div>
                 </div>

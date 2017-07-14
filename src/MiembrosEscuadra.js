@@ -5,7 +5,7 @@ class MiembrosEscuadra extends Component{
     this.props.añadeFusilero(this.props.indiceUn);
   }
   quitaFusilero(event){
-
+    this.props.quitaFusilero(this.props.indiceUn);
   }
   render() {
       return(

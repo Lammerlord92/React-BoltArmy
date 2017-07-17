@@ -12,7 +12,8 @@
     "mobx-react-devtools": "^4.2.5",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-toolbox": "^2.0.0-beta.12"
   },
   "scripts": {
     "start": "react-scripts start",

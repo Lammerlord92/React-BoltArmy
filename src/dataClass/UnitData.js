@@ -1,8 +1,9 @@
 import {extendObservable} from 'mobx';
-
+import datos from "../controllers/firebaseController";
 
 class UnitData{
   constructor(){
+    self=this;
     extendObservable(this,{
       unidades: [
           {
@@ -35,7 +36,34 @@ class UnitData{
           }
       ]
     });
+    datos.unidadesTabla.once('value').then(
+      function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+          const key=childSnapshot.key;
+          const valor=childSnapshot.val();
+          // console.log(key);
+          // console.log(valor);
+          const auxVal={
+            nombre: valor.nombre,
+            experiencia: valor.experiencia,
+            icono:valor.icono,
+            capEscuadra: valor.capEscuadra,
+            minEscuadra: valor.minEscuadra,
+            cuposOcupados:valor.minEscuadra,
+            numeroFusiles:valor.minEscuadra,
+            costeBase:valor.costeBase,
+            costePorFusil:0,
+            costeEscuadra:valor.minEscuadra*valor.costeBase,
+            habilitaAñadeFusilero:true,
+            habilitaQuitaFusilero:false
+          }
+          self.unidades.push(auxVal);
+        })
+      }
+    )
   }
+
+
 
   añadeFusilero(indice){
     this.unidades.forEach(

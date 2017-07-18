@@ -6,34 +6,22 @@ class UnitData{
     self=this;
     extendObservable(this,{
       unidades: [
-          {
-              nombre: 'Granaderos',
-              experiencia: 'Regulares',
-              icono:require('../img/icons/Icon_Granadero.png'),
-              capEscuadra: 10,
-              minEscuadra: 5,
-              cuposOcupados:5,
-              numeroFusiles:5,
-              costeBase:10,
-              costePorFusil:0,
-              costeEscuadra:50,
-              habilitaAñadeFusilero:true,
-              habilitaQuitaFusilero:false
-          },
-          {
-              nombre: 'Granaderos',
-              experiencia: 'Regulares',
-              icono:require('../img/icons/Icon_Granadero.png'),
-              capEscuadra: 10,
-              minEscuadra: 5,
-              cuposOcupados:5,
-              numeroFusiles:5,
-              costeBase:10,
-              costePorFusil:0,
-              costeEscuadra:50,
-              habilitaAñadeFusilero:true,
-              habilitaQuitaFusilero:false
-          }
+          // {
+          //     nombre: 'Granaderos',
+          //     experiencia: 'Regulares',
+          //     icono:require('../img/icons/Icon_Granadero.png'),
+          //     capEscuadra: 10,
+          //     minEscuadra: 5,
+          //     cuposOcupados:5,
+          //     numeroFusiles:5,
+          //     costeBase:10,
+          //     costePorFusil:0,
+          //     costeEscuadra:50,
+          //     habilitaAñadeFusilero:true,
+          //     habilitaQuitaFusilero:false
+          // }
+      ], armas: [
+
       ]
     });
     datos.unidadesTabla.once('value').then(
@@ -41,8 +29,8 @@ class UnitData{
         snapshot.forEach(function(childSnapshot){
           const key=childSnapshot.key;
           const valor=childSnapshot.val();
-          // console.log(key);
-          // console.log(valor);
+          var armaPrincipal=
+          datos.armasTabla.child(""+valor.armamentoBase).on('value', (snap)=> snap.val());
           const auxVal={
             nombre: valor.nombre,
             experiencia: valor.experiencia,
@@ -50,6 +38,7 @@ class UnitData{
             capEscuadra: valor.capEscuadra,
             minEscuadra: valor.minEscuadra,
             cuposOcupados:valor.minEscuadra,
+            armaBase:armaPrincipal.nombre,
             numeroFusiles:valor.minEscuadra,
             costeBase:valor.costeBase,
             costePorFusil:0,
@@ -61,6 +50,7 @@ class UnitData{
         })
       }
     )
+
   }
 
 

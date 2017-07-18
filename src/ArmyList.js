@@ -22,6 +22,7 @@ class ArmyList extends Component {
                     <div id="stats" className="col-sm-8 text-left">
                         <h3>{value.nombre}</h3>
                         <h4>{value.experiencia}</h4>
+                        <p>Armamento base: {value.armaBase}</p>
                      </div>
                   </div>
                   <div id="unitOpt" className="row">

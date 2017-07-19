@@ -30,3 +30,7 @@
 .Counter-odd {
     color: cornflowerblue;
 }
+
+.btn-circle {
+  border-radius: 50%;
+}

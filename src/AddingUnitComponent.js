@@ -12,9 +12,9 @@ class AddingUnitComponent extends Component {
         //TODO Cambiarlo para que añada unidades al componente que se le ha pasado cuando se pulse en la imagen
         (value,index)=>(
             infantry_div.push(
-              <div key={index} className="col-sm-3">
-                <img src={value.icono} alt="Icono {value.nombre}" className="img-circle img-responsive"
-                onClick=""/>
+              <div key={index} className="col-sm-4">
+              <button type="button" className="btn-circle btn-default">  <img src={value.icono} alt="Icono {value.nombre}" className="img-circle img-responsive"
+                onClick=""/> </button>
               </div>
             )
           )

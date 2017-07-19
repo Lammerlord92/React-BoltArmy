@@ -4,7 +4,7 @@ import VarUnitData from './dataClass/UnitData.js';
 import MiembrosEscuadra from './MiembrosEscuadra.js';
 
 
-class ArmyListUnit extends Component {
+class InfantryUnitComponent extends Component {
   render() {
     let units_div=[];
     const llenar_units_div = VarUnitData.unidades.forEach(
@@ -57,4 +57,4 @@ class ArmyListUnit extends Component {
 
 
 
-export default observer(ArmyListUnit);
+export default observer(InfantryUnitComponent);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import VarInfantryUnitData from './dataClass/InfantryUnitData.js';
+import VarInfantryUnitData from '../dataClass/InfantryUnitData.js';
 import MiembrosEscuadra from './MiembrosEscuadra.js';
 
 

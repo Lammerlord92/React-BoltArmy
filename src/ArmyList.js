@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { observer } from 'mobx-react'
-import InfantryUnitComponent from './InfantryUnitComponent.js';
+import InfantryUnitComponent from './dataComponents/InfantryUnitComponent.js';
 //import { observer } from 'mobx-react';
 
 class ArmyList extends Component {

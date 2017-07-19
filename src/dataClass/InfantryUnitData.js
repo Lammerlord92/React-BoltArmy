@@ -1,105 +1,77 @@
 //Elementos de infantería de la lista
 import {extendObservable} from 'mobx';
-import datos from "../controllers/firebaseController";
+//import datos from "../controllers/firebaseController";
 
 class InfantryUnitData{
   constructor(){
-    self=this;
+//    self=this;
     extendObservable(this,{
-      unidades: [
-          // {
-          //     nombre: 'Granaderos',
-          //     experiencia: 'Regulares',
-          //     icono:require('../img/icons/Icon_Granadero.png'),
-          //     capEscuadra: 10,
-          //     minEscuadra: 5,
-          //     cuposOcupados:5,
-          //     numeroFusiles:5,
-          //     costeBase:10,
-          //     costePorFusil:0,
-          //     costeEscuadra:50,
-          //     habilitaAñadeFusilero:true,
-          //     habilitaQuitaFusilero:false
-          // }
-      ], armas: [
+        unidades: [],
+        armas: []
+      });
+    }
 
-      ]
-    });
-    datos.unidadesTabla.once('value').then(
-      function(snapshot){
-        snapshot.forEach(function(childSnapshot){
-          const key=childSnapshot.key;
-          const valor=childSnapshot.val();
-          var armaPrincipal;
-          datos.armasTabla.child(""+valor.armamentoBase).on('value', function(snap){
-            armaPrincipal= snap.val();
-            console.log(armaPrincipal);
-            const auxVal={
-                nombre: valor.nombre,
-                experiencia: valor.experiencia,
-                icono:valor.icono,
-                capEscuadra: valor.capEscuadra,
-                minEscuadra: valor.minEscuadra,
-                cuposOcupados:valor.minEscuadra,
-                armaBase:armaPrincipal.nombre,
-                numeroFusiles:valor.minEscuadra,
-                costeBase:valor.costeBase,
-                costePorFusil:0,
-                costeEscuadra:valor.minEscuadra*valor.costeBase,
-                habilitaAñadeFusilero:true,
-                habilitaQuitaFusilero:false
-              }
-              self.unidades.push(auxVal);
-            })
-        })
-      }
-    )
-
-  }
-
-
-
-  añadeFusilero(indice){
-    this.unidades.forEach(
-      (value,index)=>{
-        if(indice===index){
-          this.unidades[index].numeroFusiles++;
-//          value.añadirMiembro();
-//          break;
-
-          this.unidades[index].cuposOcupados++;
-          this.unidades[index].habilitaQuitaFusilero=true;
-          if(this.unidades[index].cuposOcupados>=this.unidades[index].capEscuadra)
-            this.unidades[index].habilitaAñadeFusilero=false;
-
-              this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
-              +this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
-
+    añadeUnidad(valorUnidad){
+      const auxVal={
+          nombre: valorUnidad.nombre,
+          experiencia: valorUnidad.experiencia,
+          icono:valorUnidad.icono,
+          capEscuadra: valorUnidad.capEscuadra,
+          minEscuadra: valorUnidad.minEscuadra,
+          cuposOcupados:valorUnidad.minEscuadra,
+          armaBase:"Fusil",
+          numeroFusiles:valorUnidad.minEscuadra,
+          costeBase:valorUnidad.costeBase,
+          costePorFusil:0,
+          costeEscuadra:valorUnidad.minEscuadra*valorUnidad.costeBase,
+          habilitaAñadeFusilero:true,
+          habilitaQuitaFusilero:false
         }
-      }
-    )
-  }
+      this.unidades.push(auxVal);
+    }
 
-  quitaFusilero(indice){
-    this.unidades.forEach(
-      (value,index)=>{
-        if(indice===index){
-            this.unidades[index].numeroFusiles--;
-//            this.quitarMiembro();
-//              break;
-  this.unidades[index].cuposOcupados--;
-  this.unidades[index].habilitaAñadeFusilero=true;
-  if(this.unidades[index].cuposOcupados<=this.unidades[index].minEscuadra)
-    this.unidades[index].habilitaQuitaFusilero=false;
 
-this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
-+this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
+
+
+    añadeFusilero(indice){
+      this.unidades.forEach(
+        (value,index)=>{
+          if(indice===index){
+            this.unidades[index].numeroFusiles++;
+  //          value.añadirMiembro();
+  //          break;
+
+            this.unidades[index].cuposOcupados++;
+            this.unidades[index].habilitaQuitaFusilero=true;
+            if(this.unidades[index].cuposOcupados>=this.unidades[index].capEscuadra)
+              this.unidades[index].habilitaAñadeFusilero=false;
+
+                this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
+                +this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
 
           }
         }
       )
+    }
 
-  }
+    quitaFusilero(indice){
+      this.unidades.forEach(
+        (value,index)=>{
+          if(indice===index){
+              this.unidades[index].numeroFusiles--;
+  //            this.quitarMiembro();
+  //              break;
+              this.unidades[index].cuposOcupados--;
+              this.unidades[index].habilitaAñadeFusilero=true;
+              if(this.unidades[index].cuposOcupados<=this.unidades[index].minEscuadra)
+                this.unidades[index].habilitaQuitaFusilero=false;
+
+              this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
+              +this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
+            }
+          }
+        )
+    }
 
   // añadirMiembro(){
   //   this.cuposOcupados++;

@@ -1,7 +1,8 @@
+//Elementos de infantería de la lista
 import {extendObservable} from 'mobx';
 import datos from "../controllers/firebaseController";
 
-class UnitData{
+class InfantryUnitData{
   constructor(){
     self=this;
     extendObservable(this,{
@@ -124,5 +125,5 @@ this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unida
 }
 
 
-var VarUnitData=new UnitData();
-export default VarUnitData;
+var VarInfantryUnitData=new InfantryUnitData();
+export default VarInfantryUnitData;

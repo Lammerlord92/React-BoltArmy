@@ -1,11 +1,16 @@
+//TODO añadir opciones de arma
+//TODO añadir opciones de sargento
+//TODO Añadir reglas especiales
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import MiembrosEscuadra from './MiembrosEscuadra.js';
+import EliminaUnidad from './EliminaUnidad.js';
 
 
 class InfantryUnitComponent extends Component {
   render() {
     let units_div=[];
+
     const llenar_units_div = this.props.UnitData.unidades.forEach(
         //valores e índice del array
         (value,index)=>(
@@ -18,11 +23,17 @@ class InfantryUnitComponent extends Component {
                           <img src={value.icono} alt="Icono granadero" className="img-circle img-responsive"/>
                       </div>
 
-                      <div id="stats" className="col-sm-8 text-left">
+                      <div id="stats" className="col-sm-7 text-left">
                           <h3>{value.nombre}</h3>
                           <h4>{value.experiencia}</h4>
                           <p>Armamento base: {value.armaBase}</p>
                        </div>
+
+                       <div id="eliminaUnidad" className="col-sm-1 text-left">
+                           <EliminaUnidad unitsArray={units_div} indiceUn={index} eliminaUnidad={
+                             (index_d,evento_d)=>{this.props.UnitData.eliminaUnidad(index_d,evento_d)}
+                             } />
+                        </div>
                   </div>
 
                   <div id="unitOpt" className="row">

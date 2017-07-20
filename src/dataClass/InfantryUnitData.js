@@ -1,3 +1,6 @@
+//TODO añadir opciones de arma
+//TODO añadir opciones de sargento
+//TODO Añadir reglas especiales
 //Elementos de infantería de la lista
 import {extendObservable} from 'mobx';
 //import datos from "../controllers/firebaseController";
@@ -30,7 +33,9 @@ class InfantryUnitData{
       this.unidades.push(auxVal);
     }
 
-
+    eliminaUnidad(indice){
+      this.unidades.splice(indice,1);
+    }
 
 
     añadeFusilero(indice){

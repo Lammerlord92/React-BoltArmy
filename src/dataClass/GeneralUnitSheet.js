@@ -1,4 +1,4 @@
-//datos para añadir a la lista (menú lateral)
+//TODO Rellenar todos los datos //datos para añadir a la lista (menú lateral)
 import {extendObservable} from 'mobx';
 import datos from "../controllers/firebaseController";
 

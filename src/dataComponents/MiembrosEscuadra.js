@@ -1,3 +1,5 @@
+//TODO cambiar métodos por añadirMiembro o algo así
+//TODO Poner una barra de progreso en el número de miembros??
 import React, { Component } from 'react';
 
 class MiembrosEscuadra extends Component{
@@ -9,7 +11,7 @@ class MiembrosEscuadra extends Component{
   }
   render() {
       return(
-        <div id="fusileros" className="col-sm-12 text-center">
+        <div id="miembrosEscuadra" className="col-sm-12 text-center">
           <h4>{this.props.unit.numeroFusiles}/{this.props.unit.capEscuadra}</h4>
             <p>
               <button onClick={this.añadeFusilero.bind(this)} className="btn btn-success" disabled={!this.props.unit.habilitaAñadeFusilero}> + </button>

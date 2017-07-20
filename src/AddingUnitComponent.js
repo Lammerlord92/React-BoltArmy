@@ -1,7 +1,7 @@
 //Componente izquierdo para añadir unidades.
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-
+import InfantryUnitSheetComponent from './datasheetComponents/InfantryUnitSheetComponent';
 
 class AddingUnitComponent extends Component {
   render() {
@@ -13,8 +13,10 @@ class AddingUnitComponent extends Component {
         (value,index)=>(
             infantry_div.push(
               <div key={index} className="col-sm-4">
-              <button type="button" className="btn-circle btn-default">  <img src={value.icono} alt="Icono {value.nombre}" className="img-circle img-responsive"
-                onClick=""/> </button>
+                  <InfantryUnitSheetComponent InfantryUnitData={value}
+                  añadeUnidad={
+                    (value,evento_d)=>{this.props.InfantryUnitData.añadeUnidad(value,evento_d)}
+                  }/>
               </div>
             )
           )

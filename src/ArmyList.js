@@ -6,13 +6,20 @@ import InfantryUnitComponent from './dataComponents/InfantryUnitComponent.js';
 class ArmyList extends Component {
   render() {
     return (
-        <div className="row">
-          <div className="col-sm-12">
-              <h2>HQ</h2>
+        <div className="panel-group">
+          <div className="panel panel-success">
+            <div className="panel-heading">
+                <h2>HQ</h2>
+            </div>
+            <div className="panel-body"></div>
           </div>
-          <div className="col-sm-12">
-              <h2>Infantería</h2>
-              <InfantryUnitComponent UnitData={this.props.InfantryUnitData}/>
+          <div className="panel panel-success">
+            <div className="panel-heading">
+                <h2>Infantería</h2>
+            </div>
+            <div className="panel-body">
+                <InfantryUnitComponent UnitData={this.props.InfantryUnitData}/>
+            </div>
           </div>
         </div>
     );

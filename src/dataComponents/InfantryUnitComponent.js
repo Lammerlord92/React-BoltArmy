@@ -10,7 +10,7 @@ class InfantryUnitComponent extends Component {
         //valores e índice del array
         (value,index)=>(
             units_div.push(
-              <div key={index} className="panel panel-success col-sm-6">
+              <div key={index} className="panel panel-success col-sm-6 col-lg-4">
                 <div className="panel-body">
 
                   <div id="unitDesc" className="row">
@@ -28,10 +28,10 @@ class InfantryUnitComponent extends Component {
                   <div id="unitOpt" className="row">
                       <MiembrosEscuadra unit={value} indiceUn={index}
                       añadeFusilero={
-                        (index_d,evento_d)=>{this.props.InfantryUnitData.añadeFusilero(index_d,evento_d)}
+                        (index_d,evento_d)=>{this.props.UnitData.añadeFusilero(index_d,evento_d)}
                       }
                       quitaFusilero={
-                        (index_d,evento_d)=>{this.props.InfantryUnitData.quitaFusilero(index_d,evento_d)}
+                        (index_d,evento_d)=>{this.props.UnitData.quitaFusilero(index_d,evento_d)}
                       }/>
                   </div>
 

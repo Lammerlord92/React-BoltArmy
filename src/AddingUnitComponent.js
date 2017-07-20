@@ -12,7 +12,7 @@ class AddingUnitComponent extends Component {
         //TODO Cambiarlo para que añada unidades al componente que se le ha pasado cuando se pulse en la imagen
         (value,index)=>(
             infantry_div.push(
-              <div key={index} className="col-sm-4">
+              <div key={index} className="col-sm-4 col-lg-2">
                   <InfantryUnitSheetComponent InfantryUnitData={value}
                   añadeUnidad={
                     (value,evento_d)=>{this.props.InfantryUnitData.añadeUnidad(value,evento_d)}
@@ -22,10 +22,22 @@ class AddingUnitComponent extends Component {
           )
       );
     return (
-      <div>
-        <div id="infantry_div" className="row">
-          <h5>Infantería</h5>
+      <div className="panel-group">
+        <div id="hq_div" className="panel panel-success">
+          <div className="panel-heading">
+            <h5 className="panel-title">HQ</h5>
+          </div>
+          <div className="panel-body">
             {infantry_div}
+            </div>
+        </div>
+        <div id="infantry_div" className="panel panel-success">
+          <div className="panel-heading">
+            <h5 className="panel-title">Infantería</h5>
+          </div>
+          <div className="panel-body">
+            {infantry_div}
+            </div>
         </div>
       </div>
     );

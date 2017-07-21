@@ -1,10 +1,12 @@
 //TODO añadir opciones de arma
 //TODO añadir opciones de sargento
-//TODO Añadir reglas especiales
+//TODO Añadir reglas especiales base
+//TODO Añadir reglas especiales opcionales
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import MiembrosEscuadra from './MiembrosEscuadra.js';
 import EliminaUnidad from './EliminaUnidad.js';
+import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 
 
 class InfantryUnitComponent extends Component {
@@ -15,28 +17,30 @@ class InfantryUnitComponent extends Component {
         //valores e índice del array
         (value,index)=>(
             units_div.push(
-              <div key={index} className="panel panel-success col-sm-6 col-lg-4">
-                <div className="panel-body">
+              <div key={index} className="panel panel-warning col-sm-12">
 
+                <div className="panel-heading">
                   <div id="unitDesc" className="row">
-                      <div id="iconDiv" className="col-sm-4 text-center">
+                      <div id="iconDiv" className="col-xs-3 col-sm-2 col-lg-1 text-center">
                           <img src={value.icono} alt="Icono granadero" className="img-circle img-responsive"/>
                       </div>
 
-                      <div id="stats" className="col-sm-7 text-left">
-                          <h3>{value.nombre}</h3>
-                          <h4>{value.experiencia}</h4>
-                          <p>Armamento base: {value.armaBase}</p>
+                      <div id="stats" className="col-xs-6 col-sm-8 col-lg-10 text-left">
+                          <h5>{value.nombre}</h5>
+                          <h6>{value.experiencia}</h6>
                        </div>
 
-                       <div id="eliminaUnidad" className="col-sm-1 text-left">
+                       <div id="eliminaUnidad" className="col-xs-3 col-sm-1 text-center">
                            <EliminaUnidad unitsArray={units_div} indiceUn={index} eliminaUnidad={
                              (index_d,evento_d)=>{this.props.UnitData.eliminaUnidad(index_d,evento_d)}
                              } />
                         </div>
                   </div>
-
+                </div>
+                <div className="panel-body">
                   <div id="unitOpt" className="row">
+                    <div className="col-sm-4">
+                      <p>Arma base: {value.armaBase}</p>
                       <MiembrosEscuadra unit={value} indiceUn={index}
                       añadeFusilero={
                         (index_d,evento_d)=>{this.props.UnitData.añadeFusilero(index_d,evento_d)}
@@ -44,6 +48,13 @@ class InfantryUnitComponent extends Component {
                       quitaFusilero={
                         (index_d,evento_d)=>{this.props.UnitData.quitaFusilero(index_d,evento_d)}
                       }/>
+                    </div>
+                    <div id="armas" className="col-sm-4">
+                      <p>Espacio para las opciones de armas</p>
+                    </div>
+                    <div id="reglas" className="col-sm-4">
+                      <OpcionesReglasUnidad indiceUn={index} unit={this.props.UnitData} opcionesReglasUnidad={value.opcionesReglasUnidad}/>
+                    </div>
                   </div>
 
                 </div>

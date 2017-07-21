@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { observer } from 'mobx-react'
-import InfantryUnitComponent from './dataComponents/InfantryUnitComponent.js';
+import InfantryUnitComponent from './dataComponents/InfantryUnitSubcomponent/InfantryUnitComponent.js';
 //import { observer } from 'mobx-react';
 
 class ArmyList extends Component {
@@ -18,7 +18,7 @@ class ArmyList extends Component {
                 <h2>Infantería</h2>
             </div>
             <div className="panel-body">
-                <InfantryUnitComponent UnitData={this.props.InfantryUnitData}/>
+                <InfantryUnitComponent  VarGeneralUnitSheet={this.props.VarGeneralUnitSheet} UnitData={this.props.InfantryUnitData}/>
             </div>
           </div>
         </div>

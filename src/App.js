@@ -20,8 +20,8 @@ class App extends Component {
             <div id="AvaliableUnits" className="col-sm-3">
                 <AddingUnitComponent VarGeneralUnitSheet={VarGeneralUnitSheet}   InfantryUnitData={VarInfantryUnitData}/>
             </div>
-            <div id="ProfileSheet" className="col-sm-9">
-                <ArmyList  InfantryUnitData={VarInfantryUnitData} />
+            <div id="ProfileSheet" className="col-sm-8">
+                <ArmyList VarGeneralUnitSheet={VarGeneralUnitSheet} InfantryUnitData={VarInfantryUnitData} />
             </div>
         </div>
       </div>

@@ -34,3 +34,7 @@
 .btn-circle {
   border-radius: 50%;
 }
+
+.disable-image{
+  opacity: 0.4;
+}

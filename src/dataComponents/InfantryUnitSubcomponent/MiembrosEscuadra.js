@@ -12,11 +12,11 @@ class MiembrosEscuadra extends Component{
   render() {
       return(
         <div id="miembrosEscuadra" className="col-sm-12 text-center">
-          <h4>{this.props.unit.numeroFusiles}/{this.props.unit.capEscuadra}</h4>
-            <p>
-              <button onClick={this.añadeFusilero.bind(this)} className="btn btn-success" disabled={!this.props.unit.habilitaAñadeFusilero}> + </button>
-              <button onClick={this.quitaFusilero.bind(this)} className="btn btn-danger" disabled={!this.props.unit.habilitaQuitaFusilero}> - </button>
-            </p>
+          <h4>
+            {this.props.unit.numeroFusiles}/{this.props.unit.capEscuadra}{' '}
+              <button onClick={this.añadeFusilero.bind(this)} className="btn btn-success btn-xs" disabled={!this.props.unit.habilitaAñadeFusilero}> + </button>
+              <button onClick={this.quitaFusilero.bind(this)} className="btn btn-danger btn-xs" disabled={!this.props.unit.habilitaQuitaFusilero}> - </button>
+          </h4>
         </div>
       )
   }

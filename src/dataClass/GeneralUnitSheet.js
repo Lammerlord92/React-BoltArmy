@@ -9,7 +9,9 @@ class GeneralUnitSheet{
       hQDisponibles:[],
       unidadesDisponibles: [],
       unidadesEspecialesDisponibles: [],
-      vehiculosDisponibles: []
+      vehiculosDisponibles: [],
+      armasDisponibles:[],
+      reglasDisponibles:[]
     });
     datos.unidadesTabla.once('value').then(
       function(snapshot){
@@ -19,6 +21,22 @@ class GeneralUnitSheet{
           self.unidadesDisponibles.push(valor);
         })
       })
+      datos.armasTabla.once('value').then(
+        function(snapshot){
+          snapshot.forEach(function(childSnapshot){
+            //const key=childSnapshot.key;
+            const valor=childSnapshot.val();
+            self.armasDisponibles.push(valor);
+          })
+        })
+        datos.reglasTabla.once('value').then(
+          function(snapshot){
+            snapshot.forEach(function(childSnapshot){
+              //const key=childSnapshot.key;
+              const valor=childSnapshot.val();
+              self.reglasDisponibles.push(valor);
+            })
+          })
     }
 }
 

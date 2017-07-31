@@ -19,7 +19,6 @@ class OpcionesReglasUnidad extends Component{
             )
          }
       );
-      console.log(rules_div);
       return(
         <div className="col-sm-12 text-center">
           {rules_div}

@@ -21,7 +21,7 @@ class InfantryUnitComponent extends Component {
 
                 <div className="panel-heading">
                   <div id="unitDesc" className="row">
-                      <div id="iconDiv" className="col-xs-3 col-sm-2 col-lg-1 text-center">
+                      <div id="iconDiv" className="col-xs-6 col-sm-2 col-lg-1 text-center">
                           <img src={value.icono} alt="Icono granadero" className="img-circle img-responsive"/>
                       </div>
 

@@ -29,24 +29,10 @@ class InfantryUnitData{
           costeEscuadra:valorUnidad.minEscuadra*valorUnidad.costeBase,
           habilitaAñadeFusilero:true,
           habilitaQuitaFusilero:false,
-          opcionesReglasUnidad:new Array(valorUnidad.opcionesReglas)
+          opcionesReglasUnidad:Object.values(valorUnidad.opcionesReglas)
         }
-        console.log(auxVal.opcionesReglasUnidad);
-        console.log(this.unidades);
-      //TODO Ver como quitar activo de la base de datos y ponerlo aquí
-      // valorUnidad.opcionesReglas.forEach(
-      //   (value,index)=>{
-      //     const valueAux={
-      //         coste:value.coste,
-      //         aplicarPorSoldado:value.aplicarPorSoldado,
-      //         nombre:value.nombre,
-      //         activo:false,
-      //         icono:value.icono
-      //     }
-      //     auxVal.opcionesReglasUnidad.push(valueAux);
-      //   }
-      // )
-      this.unidades.push(auxVal);
+        //TODO Ver como quitar activo de la base de datos y ponerlo aquí
+        this.unidades.push(auxVal);
     }
 
     eliminaUnidad(indice){
@@ -98,7 +84,7 @@ class InfantryUnitData{
       this.unidades.forEach(
         (value,index)=>{
           if(indice_d===index){
-            this.unidades[index].opcionesUnidad[indice_e].activo=!this.unidades[index].opcionesUnidad[indice_e].activo;
+            this.unidades[index].opcionesReglasUnidad[indice_e].activo=!this.unidades[index].opcionesReglasUnidad[indice_e].activo;
           }
         }
       )

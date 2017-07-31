@@ -41,52 +41,33 @@ class InfantryUnitData{
 
 
     añadeFusilero(indice){
-      this.unidades.forEach(
-        (value,index)=>{
-          if(indice===index){
-            this.unidades[index].numeroFusiles++;
-  //          value.añadirMiembro();
-  //          break;
+      this.unidades[indice].numeroFusiles++;
+//          value.añadirMiembro();
+//          break;
 
-            this.unidades[index].cuposOcupados++;
-            this.unidades[index].habilitaQuitaFusilero=true;
-            if(this.unidades[index].cuposOcupados>=this.unidades[index].capEscuadra)
-              this.unidades[index].habilitaAñadeFusilero=false;
+      this.unidades[indice].cuposOcupados++;
+      this.unidades[indice].habilitaQuitaFusilero=true;
+      if(this.unidades[indice].cuposOcupados>=this.unidades[indice].capEscuadra)
+        this.unidades[indice].habilitaAñadeFusilero=false;
 
-            this.calculaCosteEscuadra(index);
-
-          }
-        }
-      )
+      this.calculaCosteEscuadra(indice);
     }
 
     quitaFusilero(indice){
-      this.unidades.forEach(
-        (value,index)=>{
-          if(indice===index){
-              this.unidades[index].numeroFusiles--;
-  //            this.quitarMiembro();
-  //              break;
-              this.unidades[index].cuposOcupados--;
-              this.unidades[index].habilitaAñadeFusilero=true;
-              if(this.unidades[index].cuposOcupados<=this.unidades[index].minEscuadra)
-                this.unidades[index].habilitaQuitaFusilero=false;
 
-              this.calculaCosteEscuadra(index);
-            }
-          }
-        )
+      this.unidades[indice].numeroFusiles--;
+//            this.quitarMiembro();
+//              break;
+      this.unidades[indice].cuposOcupados--;
+      this.unidades[indice].habilitaAñadeFusilero=true;
+      if(this.unidades[indice].cuposOcupados<=this.unidades[indice].minEscuadra)
+        this.unidades[indice].habilitaQuitaFusilero=false;
+      this.calculaCosteEscuadra(indice);
     }
 
     pulsarRegla(indice_d, indice_e){
-      this.unidades.forEach(
-        (value,index)=>{
-          if(indice_d===index){
-            this.unidades[index].opcionesReglasUnidad[indice_e].activo=!this.unidades[index].opcionesReglasUnidad[indice_e].activo;
-            this.calculaCosteEscuadra(index);
-          }
-        }
-      )
+      this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo=!this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo;
+      this.calculaCosteEscuadra(indice_d);
     }
 
   // añadirMiembro(){

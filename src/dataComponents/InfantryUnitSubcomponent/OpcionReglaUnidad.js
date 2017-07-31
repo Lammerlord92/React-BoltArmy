@@ -11,7 +11,8 @@ class OpcionReglaUnidad extends Component{
       claseAux+=" disable-image";
     }
     this.state.clase=claseAux;
-    //Obliga a refrescar el componente
+    //Obliga a refrescar el componente permitiendo activar
+    //o desactivar la regla especial
     this.forceUpdate();
   }
   pulsarRegla(event){

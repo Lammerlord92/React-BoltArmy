@@ -53,8 +53,7 @@ class InfantryUnitData{
             if(this.unidades[index].cuposOcupados>=this.unidades[index].capEscuadra)
               this.unidades[index].habilitaAñadeFusilero=false;
 
-                this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
-                +this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
+            this.calculaCosteEscuadra(index);
 
           }
         }
@@ -73,8 +72,7 @@ class InfantryUnitData{
               if(this.unidades[index].cuposOcupados<=this.unidades[index].minEscuadra)
                 this.unidades[index].habilitaQuitaFusilero=false;
 
-              this.unidades[index].costeEscuadra=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
-              +this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
+              this.calculaCosteEscuadra(index);
             }
           }
         )
@@ -85,10 +83,12 @@ class InfantryUnitData{
         (value,index)=>{
           if(indice_d===index){
             this.unidades[index].opcionesReglasUnidad[indice_e].activo=!this.unidades[index].opcionesReglasUnidad[indice_e].activo;
+            this.calculaCosteEscuadra(index);
           }
         }
       )
     }
+
   // añadirMiembro(){
   //   this.cuposOcupados++;
   //   this.habilitaQuitaFusilero=true;
@@ -106,10 +106,27 @@ class InfantryUnitData{
   //
   //   this.calculaCosteEscuadra();
   // }
-  // calculaCosteEscuadra(){
-  //   this.costeEscuadra=this.cuposOcupados*this.costeBase
-  //   +this.costePorFusil*this.numeroFusiles;
-  // }
+  calculaCosteEscuadra(index){
+    var coste=0;
+    //Añadimos el coste de los soldados
+    coste+=this.unidades[index].cuposOcupados*this.unidades[index].costeBase
+    +this.unidades[index].costePorFusil*this.unidades[index].numeroFusiles;
+    //Añadimos coste de las reglas especiales
+    this.unidades[index].opcionesReglasUnidad.forEach(
+      (value,index)=>{
+        if(value.activo){
+            if(value.aplicarPorSoldado){
+              coste+=value.coste*this.unidades[index].cuposOcupados;
+            }else{
+              coste+=value.coste;
+            }
+        }
+
+      }
+    )
+
+    this.unidades[index].costeEscuadra=coste;
+  }
 }
 
 

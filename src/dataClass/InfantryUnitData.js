@@ -17,8 +17,10 @@ class InfantryUnitData{
     añadeUnidad(valorUnidad){
       var opcionesReglas=[];
       var opcionesArma=[];
+      var opcionesSargento=[];
 
       if(valorUnidad.opcionesReglas) opcionesReglas=Object.values(valorUnidad.opcionesReglas);
+      if(valorUnidad.opcionesSargento) opcionesSargento=Object.values(valorUnidad.opcionesSargento);
       if(valorUnidad.opcionesArma){
         Object.values(valorUnidad.opcionesArma).forEach(
           (value,index) => opcionesArma.push(
@@ -34,7 +36,7 @@ class InfantryUnitData{
           )
         );
       }
-
+      console.log(opcionesSargento);
       const auxVal={
           nombre: valorUnidad.nombre,
           experiencia: valorUnidad.experiencia,
@@ -52,7 +54,9 @@ class InfantryUnitData{
           habilitaQuitaFusilero:false,
           opcionesReglasUnidad:opcionesReglas,
           opcionesArmasUnidad:opcionesArma,
-          cuposArmasOcupados:0
+          cuposArmasOcupados:0,
+          opcionesSargento:opcionesSargento,
+          opcionSargentoEscogida:0
         }
         //TODO Ver como quitar activo de la base de datos y ponerlo aquí
         this.unidades.push(auxVal);

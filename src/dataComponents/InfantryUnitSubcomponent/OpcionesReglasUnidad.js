@@ -1,4 +1,3 @@
-//TODO poner un if para el caso en el que no haya ninguna regla
 import React, { Component } from 'react';
 import OpcionReglaUnidad from './OpcionReglaUnidad.js';
 

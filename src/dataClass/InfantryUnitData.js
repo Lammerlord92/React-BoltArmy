@@ -16,8 +16,25 @@ class InfantryUnitData{
 
     añadeUnidad(valorUnidad){
       var opcionesReglas=[];
-      if(valorUnidad.opcionesReglas)
-        opcionesReglas=Object.values(valorUnidad.opcionesReglas);
+      var opcionesArma=[];
+
+      if(valorUnidad.opcionesReglas) opcionesReglas=Object.values(valorUnidad.opcionesReglas);
+      if(valorUnidad.opcionesArma){
+        Object.values(valorUnidad.opcionesArma).forEach(
+          (value,index) => opcionesArma.push(
+            {
+                coste:value.coste,
+                cupos:value.cupos,
+                cuposOcupados:0,
+                activo:true,
+                icono:value.icono,
+                nombre:value.nombre,
+                soldadosOcupados:value.soldadosOcupados
+            }
+          )
+        );
+      }
+
       const auxVal={
           nombre: valorUnidad.nombre,
           experiencia: valorUnidad.experiencia,
@@ -25,14 +42,17 @@ class InfantryUnitData{
           capEscuadra: valorUnidad.capEscuadra,
           minEscuadra: valorUnidad.minEscuadra,
           cuposOcupados:valorUnidad.minEscuadra,
-          armaBase:"Fusil",
+          soldadosConArma:0,
+          armaBase:valorUnidad.armamentoBase,
           numeroFusiles:valorUnidad.minEscuadra,
           costeBase:valorUnidad.costeBase,
           costePorFusil:0,
           costeEscuadra:valorUnidad.minEscuadra*valorUnidad.costeBase,
           habilitaAñadeFusilero:true,
           habilitaQuitaFusilero:false,
-          opcionesReglasUnidad:opcionesReglas
+          opcionesReglasUnidad:opcionesReglas,
+          opcionesArmasUnidad:opcionesArma,
+          cuposArmasOcupados:0
         }
         //TODO Ver como quitar activo de la base de datos y ponerlo aquí
         this.unidades.push(auxVal);
@@ -42,54 +62,67 @@ class InfantryUnitData{
       this.unidades.splice(indice,1);
     }
 
-
+    //Añade un miembro a la escuadra
     añadeFusilero(indice){
       this.unidades[indice].numeroFusiles++;
-//          value.añadirMiembro();
-//          break;
-
       this.unidades[indice].cuposOcupados++;
+
       this.unidades[indice].habilitaQuitaFusilero=true;
       if(this.unidades[indice].cuposOcupados>=this.unidades[indice].capEscuadra)
         this.unidades[indice].habilitaAñadeFusilero=false;
 
+      this.calculaCuposArmasDisponibles(indice)
       this.calculaCosteEscuadra(indice);
     }
-
+    //Quita un miembro de la escuadra
     quitaFusilero(indice){
-
       this.unidades[indice].numeroFusiles--;
-//            this.quitarMiembro();
-//              break;
       this.unidades[indice].cuposOcupados--;
+
       this.unidades[indice].habilitaAñadeFusilero=true;
       if(this.unidades[indice].cuposOcupados<=this.unidades[indice].minEscuadra)
         this.unidades[indice].habilitaQuitaFusilero=false;
+
+      this.calculaCuposArmasDisponibles(indice)
       this.calculaCosteEscuadra(indice);
     }
 
+    //Método llamado cuando se pulsa sobre una regla especial opcional
     pulsarRegla(indice_d, indice_e){
       this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo=!this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo;
       this.calculaCosteEscuadra(indice_d);
     }
 
-  // añadirMiembro(){
-  //   this.cuposOcupados++;
-  //   this.habilitaQuitaFusilero=true;
-  //   if(this.cuposOcupados>=this.capEscuadra)
-  //     this.habilitaAñadeFusilero=false;
-  //
-  //   this.calculaCosteEscuadra();
-  // }
-  //
-  // quitarMiembro(){
-  //   this.cuposOcupados--;
-  //   this.habilitaAñadeFusilero=true;
-  //   if(this.cuposOcupados<=this.minEscuadra)
-  //     this.habilitaQuitaFusilero=false;
-  //
-  //   this.calculaCosteEscuadra();
-  // }
+    //Método llamado cuando se pulsa sobre un opción de arma
+    addArma(indice_u, indice_a){
+      this.unidades[indice_u].cuposArmasOcupados+=this.unidades[indice_u].opcionesArmasUnidad[indice_a].soldadosOcupados;
+      this.unidades[indice_u].opcionesArmasUnidad[indice_a].cuposOcupados++;
+      const cupDispo=this.calculaCuposArmasDisponibles(indice_u);
+      this.calculaCosteEscuadra(indice_u);
+    }
+
+    //Método llamado cuando se pulsa sobre un opción de arma no escogida
+    quitaArma(indice_u, indice_a){
+      this.unidades[indice_u].cuposArmasOcupados-=this.unidades[indice_u].opcionesArmasUnidad[indice_a].soldadosOcupados;
+      this.unidades[indice_u].opcionesArmasUnidad[indice_a].cuposOcupados--;
+      const cupDispo=this.calculaCuposArmasDisponibles(indice_u);
+      this.calculaCosteEscuadra(indice_u);
+    }
+
+    //Método auxiliar, usado para bloquear el borrado de soldados o impedir que se cojan nuevas opciones de arma
+    calculaCuposArmasDisponibles(indice_u){
+      const dif= this.unidades[indice_u].numeroFusiles-this.unidades[indice_u].cuposArmasOcupados-1;
+      console.log(dif);
+      this.unidades[indice_u].opcionesArmasUnidad.forEach(
+            (value,index)=>{
+              if(dif<value.soldadosOcupados) {this.unidades[indice_u].opcionesArmasUnidad[index].activo=false;}
+              else{this.unidades[indice_u].opcionesArmasUnidad[index].activo=true;}
+            }
+      )
+      if(dif===0) this.unidades[indice_u].habilitaQuitaFusilero=false;
+    }
+
+  //Método usado para calcular el coste de cada escuadra
   calculaCosteEscuadra(index){
     var coste=0;
     //Añadimos el coste de los soldados
@@ -105,10 +138,15 @@ class InfantryUnitData{
               coste+=value.coste;
             }
         }
-
       }
     )
-
+    //Costes de las opciones de arma
+    this.unidades[index].opcionesArmasUnidad.forEach(
+          (value,index)=>{
+            coste+=value.cuposOcupados*value.coste;
+          }
+    )
+    //Se cambia la suma de todos los costes en la escuadra
     this.unidades[index].costeEscuadra=coste;
   }
 }

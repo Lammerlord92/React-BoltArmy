@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import MiembrosEscuadra from './MiembrosEscuadra.js';
 import EliminaUnidad from './EliminaUnidad.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
+import OpcionesArmasUnidad from './OpcionesArmasUnidad.js';
 
 
 class InfantryUnitComponent extends Component {
@@ -50,7 +51,7 @@ class InfantryUnitComponent extends Component {
                       }/>
                     </div>
                     <div id="armas" className="col-sm-4">
-                      <p>Espacio para las opciones de armas</p>
+                      <OpcionesArmasUnidad indiceUn={index} unit={this.props.UnitData} opcionesArmasUnidad={value.opcionesArmasUnidad}/>
                     </div>
                     <div id="reglas" className="col-sm-4">
                       <OpcionesReglasUnidad indiceUn={index} unit={this.props.UnitData} opcionesReglasUnidad={value.opcionesReglasUnidad}/>

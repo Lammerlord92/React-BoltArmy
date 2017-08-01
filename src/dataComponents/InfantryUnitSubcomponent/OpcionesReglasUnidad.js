@@ -9,7 +9,7 @@ class OpcionesReglasUnidad extends Component{
     const llenar_rules_div = this.props.opcionesReglasUnidad.forEach(
         (value,index)=>{
             if(value!=null) rules_div.push(
-              <div key={index} className="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+              <div key={index} className="col-xs-6 col-sm-6 col-md-4 col-lg-3 text-center">
                   <OpcionReglaUnidad rule={value} ruleIndex={index} unitIndex={this.props.indiceUn}
                     pulsarRegla={
                       (index_d,index_e,evento_d)=>
@@ -21,7 +21,10 @@ class OpcionesReglasUnidad extends Component{
       );
       return(
         <div className="col-sm-12 text-center">
-          {rules_div}
+          <div className="col-sm-12 text-center">Reglas especiales</div>
+          <div className="col-sm-12 text-center">
+            {rules_div}
+          </div>
         </div>
       )
   }

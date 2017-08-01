@@ -15,6 +15,9 @@ class InfantryUnitData{
     }
 
     añadeUnidad(valorUnidad){
+      var opcionesReglas=[];
+      if(valorUnidad.opcionesReglas)
+        opcionesReglas=Object.values(valorUnidad.opcionesReglas);
       const auxVal={
           nombre: valorUnidad.nombre,
           experiencia: valorUnidad.experiencia,
@@ -29,7 +32,7 @@ class InfantryUnitData{
           costeEscuadra:valorUnidad.minEscuadra*valorUnidad.costeBase,
           habilitaAñadeFusilero:true,
           habilitaQuitaFusilero:false,
-          opcionesReglasUnidad:Object.values(valorUnidad.opcionesReglas)
+          opcionesReglasUnidad:opcionesReglas
         }
         //TODO Ver como quitar activo de la base de datos y ponerlo aquí
         this.unidades.push(auxVal);

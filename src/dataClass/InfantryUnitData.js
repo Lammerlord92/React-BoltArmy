@@ -36,7 +36,6 @@ class InfantryUnitData{
           )
         );
       }
-      console.log(opcionesSargento);
       const auxVal={
           nombre: valorUnidad.nombre,
           experiencia: valorUnidad.experiencia,
@@ -55,7 +54,7 @@ class InfantryUnitData{
           opcionesReglasUnidad:opcionesReglas,
           opcionesArmasUnidad:opcionesArma,
           cuposArmasOcupados:0,
-          opcionesSargento:opcionesSargento,
+          opcionesSargentoUnidad:opcionesSargento,
           opcionSargentoEscogida:0
         }
         //TODO Ver como quitar activo de la base de datos y ponerlo aquí
@@ -112,11 +111,14 @@ class InfantryUnitData{
       const cupDispo=this.calculaCuposArmasDisponibles(indice_u);
       this.calculaCosteEscuadra(indice_u);
     }
-
+    //Cambia la opción del sargento. por si acaso, parseo a int
+    cambiaArmaSargento(indice_u,indice_a){
+      this.unidades[indice_u].opcionSargentoEscogida=parseInt(indice_a);
+      this.calculaCosteEscuadra(indice_u);
+    }
     //Método auxiliar, usado para bloquear el borrado de soldados o impedir que se cojan nuevas opciones de arma
     calculaCuposArmasDisponibles(indice_u){
       const dif= this.unidades[indice_u].numeroFusiles-this.unidades[indice_u].cuposArmasOcupados-1;
-      console.log(dif);
       this.unidades[indice_u].opcionesArmasUnidad.forEach(
             (value,index)=>{
               if(dif<value.soldadosOcupados) {this.unidades[indice_u].opcionesArmasUnidad[index].activo=false;}
@@ -150,6 +152,10 @@ class InfantryUnitData{
             coste+=value.cuposOcupados*value.coste;
           }
     )
+
+    //Añadimos el coste del sargento
+    const opS=this.unidades[index].opcionSargentoEscogida;
+    coste+= this.unidades[index].opcionesSargentoUnidad[opS].coste;
     //Se cambia la suma de todos los costes en la escuadra
     this.unidades[index].costeEscuadra=coste;
   }

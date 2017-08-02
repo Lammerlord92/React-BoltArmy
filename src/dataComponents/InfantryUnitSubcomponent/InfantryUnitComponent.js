@@ -8,6 +8,7 @@ import MiembrosEscuadra from './MiembrosEscuadra.js';
 import EliminaUnidad from './EliminaUnidad.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import OpcionesArmasUnidad from './OpcionesArmasUnidad.js';
+import OpcionSargento from './OpcionSargento.js';
 
 
 class InfantryUnitComponent extends Component {
@@ -49,6 +50,8 @@ class InfantryUnitComponent extends Component {
                       quitaFusilero={
                         (index_d,evento_d)=>{this.props.UnitData.quitaFusilero(index_d,evento_d)}
                       }/>
+                      <OpcionSargento unit={this.props.UnitData.unidades[index]} unidad={index}
+                      cambiaArmaSargento={(indice_u,indice_a,evento_d)=>this.props.UnitData.cambiaArmaSargento(indice_u,indice_a,evento_d)}/>
                     </div>
                     <div id="armas" className="col-sm-4">
                       <OpcionesArmasUnidad indiceUn={index} unit={this.props.UnitData} opcionesArmasUnidad={value.opcionesArmasUnidad}/>

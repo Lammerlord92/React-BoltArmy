@@ -1,9 +1,6 @@
-//TODO añadir opciones de arma
-//TODO añadir opciones de sargento
-//TODO Añadir reglas especiales
-//Elementos de infantería de la lista
+//Elementos de infantería del pelotón
 import {extendObservable} from 'mobx';
-//import datos from "../controllers/firebaseController";
+//TODO importar datos directamente de "../controllers/firebaseController" en el constructor;
 
 class InfantryUnitData{
   constructor(){

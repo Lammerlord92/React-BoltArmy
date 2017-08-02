@@ -13,9 +13,10 @@ firebase.initializeApp(config);
 const database=firebase.database();
 
 const unidadesTabla=database.ref('unidades/');
+const unidadesEspecialesTabla=database.ref('unidadesEspeciales/');
 const armasTabla=database.ref('armas/');
 const reglasTabla=database.ref('reglasEspeciales/');
 
-const datos={unidadesTabla,armasTabla,reglasTabla};
+const datos={unidadesTabla,unidadesEspecialesTabla,armasTabla,reglasTabla};
 
 export default datos;

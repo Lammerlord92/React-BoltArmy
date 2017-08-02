@@ -7,6 +7,7 @@ import AddingUnitComponent from './AddingUnitComponent.js';
 //DataClass
 import VarGeneralUnitSheet from './dataClass/GeneralUnitSheet.js';
 import VarInfantryUnitData from './dataClass/InfantryUnitData.js';
+import VarSpecialUnitData from './dataClass/SpecialUnitData.js';
 
 class App extends Component {
   render() {
@@ -18,10 +19,12 @@ class App extends Component {
         </div>
         <div id="content" className="row">
             <div id="AvaliableUnits" className="col-sm-3">
-                <AddingUnitComponent VarGeneralUnitSheet={VarGeneralUnitSheet}   InfantryUnitData={VarInfantryUnitData}/>
+                <AddingUnitComponent VarGeneralUnitSheet={VarGeneralUnitSheet}   InfantryUnitData={VarInfantryUnitData}
+                SpecialUnitData={VarSpecialUnitData}/>
             </div>
             <div id="ProfileSheet" className="col-sm-8">
-                <ArmyList VarGeneralUnitSheet={VarGeneralUnitSheet} InfantryUnitData={VarInfantryUnitData} />
+                <ArmyList VarGeneralUnitSheet={VarGeneralUnitSheet} InfantryUnitData={VarInfantryUnitData}
+                SpecialUnitData={VarSpecialUnitData}/>
             </div>
         </div>
       </div>

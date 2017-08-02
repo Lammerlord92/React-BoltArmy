@@ -21,6 +21,14 @@ class GeneralUnitSheet{
           self.unidadesDisponibles.push(valor);
         })
       })
+      datos.unidadesEspecialesTabla.once('value').then(
+        function(snapshot){
+          snapshot.forEach(function(childSnapshot){
+            //const key=childSnapshot.key;
+            const valor=childSnapshot.val();
+            self.unidadesEspecialesDisponibles.push(valor);
+          })
+        })
       datos.armasTabla.once('value').then(
         function(snapshot){
           snapshot.forEach(function(childSnapshot){

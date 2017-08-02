@@ -10,9 +10,9 @@ class OpcionSargento extends Component{
     let botonesArmas=[];
     const addBotones=this.props.unit.opcionesSargentoUnidad.forEach(
       (value,index)=>{
-        var boton=<img id={index} key={index} onClick={this.cambiaArmaSargento.bind(this)} className="img-circle img-responsive disable-image col-md-3"
+        var boton=<img id={index} key={index} onClick={this.cambiaArmaSargento.bind(this)} className="img-circle img-responsive disable-image col-md-3 center-block"
           src={value.icono} alt={value.nombre} />;
-        if(index===this.props.unit.opcionSargentoEscogida) {boton=<img key={index} className="img-circle img-responsive col-md-3"
+        if(index===this.props.unit.opcionSargentoEscogida) {boton=<img key={index} className="img-circle img-responsive col-md-3 center-block"
           src={value.icono} alt={value.nombre} />;}
         botonesArmas.push(boton);
       }

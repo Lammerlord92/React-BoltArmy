@@ -31,10 +31,12 @@ class SpecialUnitComponent extends Component {
                 <div className="panel-body">
                   <div id="unitOpt" className="row">
                     <div className="col-sm-4">
-                        {value.tamañoEscuadra}
+                        <h4>Tamaño de escuadra: {value.tamañoEscuadra}</h4>
+                        <img src={value.opcionesVeteraniaUn[0].icono} alt={value.opcionesVeteraniaUn[0].nombre} className="img-circle img-responsive center-block"/>
                     </div>
                     <div id="armas" className="col-sm-4">
-                        {value.arma}
+                        <h4>Arma</h4>
+                        <img src={value.arma.icono} alt={value.arma.nombre} className="img-circle img-responsive center-block"/>
                     </div>
                     <div id="reglas" className="col-sm-4">
 

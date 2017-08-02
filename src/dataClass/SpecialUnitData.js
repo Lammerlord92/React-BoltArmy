@@ -23,7 +23,10 @@ class SpecialUnitData{
         icono:valorUnidad.icono,
         tamañoEscuadra:valorUnidad.tamañoEscuadra,
         arma:valorUnidad.arma,
+        facción:valorUnidad.facción,
+        tipo:valorUnidad.tipo,
         veteraniaEscogida:0,
+        capacidadEnLista:valorUnidad.capacidadEnLista,
         opcionObservador:valorUnidad.opcionObservador,
         opcionesReglasUn:opcionesReglas,
         opcionesVeteraniaUn:opcionesVeterania

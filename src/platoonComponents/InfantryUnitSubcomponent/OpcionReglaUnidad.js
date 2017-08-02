@@ -6,7 +6,7 @@ class OpcionReglaUnidad extends Component{
           this.state = {clase:"img-circle img-responsive disable-image"};
       }
   claseRegla(){
-    var claseAux="img-circle img-responsive";
+    var claseAux="img-circle img-responsive center-block";
     if(!this.props.rule.activo){
       claseAux+=" disable-image";
     }

@@ -155,7 +155,7 @@ class InfantryUnitData{
 
     //Añadimos el coste del sargento
     const opS=this.unidades[index].opcionSargentoEscogida;
-    coste+= this.unidades[index].opcionesSargentoUnidad[opS].coste;
+    if(opS) coste+= this.unidades[index].opcionesSargentoUnidad[opS].coste;
     //Se cambia la suma de todos los costes en la escuadra
     this.unidades[index].costeEscuadra=coste;
   }

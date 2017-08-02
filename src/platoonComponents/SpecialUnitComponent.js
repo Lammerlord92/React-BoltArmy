@@ -1,17 +1,8 @@
-//TODO añadir opciones de arma
-//TODO añadir opciones de sargento
-//TODO Añadir reglas especiales base
-//TODO Añadir reglas especiales opcionales
+//TODO
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import MiembrosEscuadra from './MiembrosEscuadra.js';
-import EliminaUnidad from './EliminaUnidad.js';
-import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
-import OpcionesArmasUnidad from './OpcionesArmasUnidad.js';
-import OpcionSargento from './OpcionSargento.js';
 
-
-class InfantryUnitComponent extends Component {
+class SpecialUnitComponent extends Component {
   render() {
     let units_div=[];
 
@@ -24,7 +15,7 @@ class InfantryUnitComponent extends Component {
                 <div className="panel-heading">
                   <div id="unitDesc" className="row">
                       <div id="iconDiv" className="col-xs-6 col-sm-2 col-lg-1 text-center">
-                          <img src={value.icono} alt="Icono granadero" className="img-circle img-responsive"/>
+                          <img src={value.icono} alt={"Icono "+value.nombre} className="img-circle img-responsive"/>
                       </div>
 
                       <div id="stats" className="col-xs-6 col-sm-8 col-lg-10 text-left">
@@ -79,4 +70,4 @@ class InfantryUnitComponent extends Component {
   }
 }
 
-export default observer(InfantryUnitComponent);
+export default observer(SpecialUnitComponent);

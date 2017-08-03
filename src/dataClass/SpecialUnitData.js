@@ -15,7 +15,7 @@ class SpecialUnitData{
     añadeUnidadEspecial(valorUnidad){
       var opcionesReglas=[];
       var opcionesVeterania=[];
-      console.log(valorUnidad);
+      
       if(valorUnidad.opcionesReglas) opcionesReglas=Object.values(valorUnidad.opcionesReglas);
       if(valorUnidad.experiencia) opcionesVeterania=Object.values(valorUnidad.experiencia);
       const auxVal={
@@ -41,7 +41,7 @@ class SpecialUnitData{
       this.unidades.splice(indice,1);
       this.calculaCosteTotal();
     }
-    
+
     cambiaExperiencia(indice_u,indice_v){
       this.unidades[indice_u].veteraniaEscogida=parseInt(indice_v);
       this.calculaCosteEscuadra(indice_u);

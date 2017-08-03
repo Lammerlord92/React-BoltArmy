@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import OpcionExperiencia from './SpecialUnitSubcomponent/OpcionExperiencia.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
+import EliminaUnidad from './EliminaUnidad.js';
 
 class SpecialUnitComponent extends Component {
   render() {
@@ -22,11 +23,13 @@ class SpecialUnitComponent extends Component {
 
                       <div id="stats" className="col-xs-6 col-sm-8 col-lg-10 text-left">
                           <h5>{value.nombre}</h5>
-                          <h6>{value.opcionesVeteraniaUn[0].nombre}</h6>
+                          <h6>{value.opcionesVeteraniaUn[value.veteraniaEscogida].nombre}</h6>
                        </div>
 
                        <div id="eliminaUnidad" className="col-xs-3 col-sm-1 text-center">
-
+                           <EliminaUnidad unitsArray={units_div} indiceUn={index} eliminaUnidad={
+                             (index_d,evento_d)=>{this.props.UnitData.eliminaUnidad(index_d,evento_d)}
+                             } />
                         </div>
                   </div>
                 </div>

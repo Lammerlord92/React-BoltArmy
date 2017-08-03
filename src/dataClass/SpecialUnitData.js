@@ -36,6 +36,12 @@ class SpecialUnitData{
         this.unidades.push(auxVal);
         this.calculaCosteTotal();
     }
+
+    eliminaUnidad(indice){
+      this.unidades.splice(indice,1);
+      this.calculaCosteTotal();
+    }
+    
     cambiaExperiencia(indice_u,indice_v){
       this.unidades[indice_u].veteraniaEscogida=parseInt(indice_v);
       this.calculaCosteEscuadra(indice_u);

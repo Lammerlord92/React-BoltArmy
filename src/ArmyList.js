@@ -27,7 +27,7 @@ class ArmyList extends Component {
           </div>
           <div className="panel panel-success">
             <div className="panel-heading">
-                <h2>Armas especiales</h2>
+                <h2>Armas de apoyo</h2>
             </div>
             <div className="panel-body">
                 <SpecialUnitComponent VarGeneralUnitSheet={this.props.VarGeneralUnitSheet} UnitData={this.props.SpecialUnitData}/>

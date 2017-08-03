@@ -1,6 +1,8 @@
 //TODO
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import OpcionExperiencia from './SpecialUnitSubcomponent/OpcionExperiencia.js';
+import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 
 class SpecialUnitComponent extends Component {
   render() {
@@ -31,15 +33,18 @@ class SpecialUnitComponent extends Component {
                 <div className="panel-body">
                   <div id="unitOpt" className="row">
                     <div className="col-sm-4">
-                        <h4>Tamaño de escuadra: {value.tamañoEscuadra}</h4>
-                        <img src={value.opcionesVeteraniaUn[0].icono} alt={value.opcionesVeteraniaUn[0].nombre} className="img-circle img-responsive center-block"/>
+                        <h5>Tamaño de escuadra: {value.tamañoEscuadra}</h5>
+                        <OpcionExperiencia opcionEscogida={value.veteraniaEscogida} opciones={value.opcionesVeteraniaUn} indUnidad={index}
+                        cambiaExperiencia={
+                          (indice_u,indice_v,evento_d)=>this.props.UnitData.cambiaExperiencia(indice_u,indice_v)
+                        }/>
                     </div>
                     <div id="armas" className="col-sm-4">
-                        <h4>Arma</h4>
+                        <h5>Arma</h5>
                         <img src={value.arma.icono} alt={value.arma.nombre} className="img-circle img-responsive center-block"/>
                     </div>
                     <div id="reglas" className="col-sm-4">
-
+                        <OpcionesReglasUnidad indiceUn={index} unit={this.props.UnitData} opcionesReglasUnidad={value.opcionesReglasUnidad}/>
                     </div>
                   </div>
 

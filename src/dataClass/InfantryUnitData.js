@@ -6,6 +6,7 @@ class InfantryUnitData{
   constructor(){
 //    self=this;
     extendObservable(this,{
+        costeInfanteria:"0",
         unidades: [],
         armas: []
       });
@@ -56,10 +57,12 @@ class InfantryUnitData{
         }
         //TODO Ver como quitar activo de la base de datos y ponerlo aquí
         this.unidades.push(auxVal);
+        this.calculaCosteInfanteria();
     }
 
     eliminaUnidad(indice){
       this.unidades.splice(indice,1);
+      this.calculaCosteInfanteria();
     }
 
     //Añade un miembro a la escuadra
@@ -155,6 +158,14 @@ class InfantryUnitData{
     if(opS) coste+= this.unidades[index].opcionesSargentoUnidad[opS].coste;
     //Se cambia la suma de todos los costes en la escuadra
     this.unidades[index].costeEscuadra=coste;
+    this.calculaCosteInfanteria();
+  }
+  //Calcula los puntos totales de infantería
+  calculaCosteInfanteria(){
+    this.costeInfanteria=0;
+    this.unidades.forEach(
+      (value,index)=>{this.costeInfanteria+=value.costeEscuadra;}
+    )
   }
 }
 

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import MiembrosEscuadra from './InfantryUnitSubcomponent/MiembrosEscuadra.js';
 import EliminaUnidad from './InfantryUnitSubcomponent/EliminaUnidad.js';
-import OpcionesReglasUnidad from './InfantryUnitSubcomponent/OpcionesReglasUnidad.js';
+import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import OpcionesArmasUnidad from './InfantryUnitSubcomponent/OpcionesArmasUnidad.js';
 import OpcionSargento from './InfantryUnitSubcomponent/OpcionSargento.js';
 

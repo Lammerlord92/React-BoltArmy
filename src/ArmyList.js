@@ -21,6 +21,9 @@ class ArmyList extends Component {
             <div className="panel-body">
                 <InfantryUnitComponent  VarGeneralUnitSheet={this.props.VarGeneralUnitSheet} UnitData={this.props.InfantryUnitData}/>
             </div>
+            <div className="panel-footer">
+                Total: {this.props.InfantryUnitData.costeInfanteria}
+            </div>
           </div>
           <div className="panel panel-success">
             <div className="panel-heading">
@@ -28,6 +31,9 @@ class ArmyList extends Component {
             </div>
             <div className="panel-body">
                 <SpecialUnitComponent VarGeneralUnitSheet={this.props.VarGeneralUnitSheet} UnitData={this.props.SpecialUnitData}/>
+            </div>
+            <div className="panel-footer">
+                Total: {this.props.SpecialUnitData.costeTotal}
             </div>
           </div>
         </div>

@@ -13,6 +13,14 @@ class GeneralUnitSheet{
       armasDisponibles:[],
       reglasDisponibles:[]
     });
+    datos.hQTabla.once('value').then(
+      function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+          //const key=childSnapshot.key;
+          const valor=childSnapshot.val();
+          self.hQDisponibles.push(valor);
+        })
+      })
     datos.unidadesTabla.once('value').then(
       function(snapshot){
         snapshot.forEach(function(childSnapshot){

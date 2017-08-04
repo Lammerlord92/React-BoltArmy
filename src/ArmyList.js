@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { observer } from 'mobx-react'
+import { observer } from 'mobx-react';
 import InfantryUnitComponent from './platoonComponents/InfantryUnitComponent.js';
 import SpecialUnitComponent from './platoonComponents/SpecialUnitComponent.js';
 //import { observer } from 'mobx-react';
@@ -17,6 +17,9 @@ class ArmyList extends Component {
           <div className="panel panel-success">
             <div className="panel-heading">
                 <h2>Infantería</h2>
+            </div>
+            <div className="panel-footer">
+                
             </div>
             <div className="panel-body">
                 <InfantryUnitComponent  VarGeneralUnitSheet={this.props.VarGeneralUnitSheet} UnitData={this.props.InfantryUnitData}/>

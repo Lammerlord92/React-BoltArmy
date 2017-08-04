@@ -4,8 +4,9 @@ import logo from './logo.svg';
 import './App.css';
 import ArmyList from './ArmyList.js';
 import AddingUnitComponent from './AddingUnitComponent.js';
-//DataClass
+//DataClas
 import VarGeneralUnitSheet from './dataClass/GeneralUnitSheet.js';
+import VarHQUnitData from './dataClass/HQUnitData.js';
 import VarInfantryUnitData from './dataClass/InfantryUnitData.js';
 import VarSpecialUnitData from './dataClass/SpecialUnitData.js';
 
@@ -20,11 +21,11 @@ class App extends Component {
         <div id="content" className="row">
             <div id="AvaliableUnits" className="col-sm-3">
                 <AddingUnitComponent VarGeneralUnitSheet={VarGeneralUnitSheet}   InfantryUnitData={VarInfantryUnitData}
-                SpecialUnitData={VarSpecialUnitData}/>
+                SpecialUnitData={VarSpecialUnitData} HQUnitData={VarHQUnitData}/>
             </div>
             <div id="ProfileSheet" className="col-sm-8">
                 <ArmyList VarGeneralUnitSheet={VarGeneralUnitSheet} InfantryUnitData={VarInfantryUnitData}
-                SpecialUnitData={VarSpecialUnitData}/>
+                SpecialUnitData={VarSpecialUnitData} HQUnitData={VarHQUnitData}/>
             </div>
         </div>
       </div>

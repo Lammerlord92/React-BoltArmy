@@ -2,7 +2,7 @@
 import {extendObservable} from 'mobx';
 //TODO importar datos directamente de "../controllers/firebaseController" en el constructor;
 
-class HQData{
+class HQUnitData{
   constructor(){
 //    self=this;
     extendObservable(this,{
@@ -12,7 +12,7 @@ class HQData{
       });
     }
 
-    añadeUnidadEspecial(valorUnidad){
+    añadeUnidad(valorUnidad){
       var opcionesReglas=[];
       var opcionesRango=[];
       var opcionesArmas=[];
@@ -20,13 +20,16 @@ class HQData{
       if(valorUnidad.opcionesReglas) opcionesReglas=Object.values(valorUnidad.opcionesReglas);
       if(valorUnidad.opcionesRango){
         Object.values(valorUnidad.opcionesRango).forEach(
-          (value,index) => opcionesRango.push(
-            {
-                costeBase:value.coste,
-                icono:value.icono,
-                nombre:value.nombre
+          (value,index)=>{
+              var opcVet=Object.values(value.opcionesVeterania);
+              opcionesRango.push(
+              {
+                  costeBase:value.coste,
+                  icono:value.icono,
+                  nombre:value.nombre,
+                  opcionesVeterania:opcVet
+              })
             }
-          )
         );
       }
       if(valorUnidad.opcionesArma){
@@ -91,7 +94,7 @@ class HQData{
     //Método usado para calcular el coste de cada escuadra
     calculaCosteEscuadra(index){
       var coste=0;
-      const opcEsc=this.unidades[index].veteraniaEscogida;
+      const opcEsc=this.unidades[index].opcionesRango[this.rangoEscogido].veteraniaEscogida;
       //Añadimos el coste de la escuadra según su veteranía
       coste+=this.unidades[index].opcionesVeteraniaUn[opcEsc].costeBase;
 
@@ -107,5 +110,5 @@ class HQData{
     }
 }
 
-var VarHQData=new HQData();
-export default VarHQData;
+var VarHQUnitData=new HQUnitData();
+export default VarHQUnitData;

@@ -1,7 +1,7 @@
 //TODO
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import OpcionExperiencia from './SpecialUnitSubcomponent/OpcionExperiencia.js';
+import OpcionExperiencia from './OpcionExperiencia.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import EliminaUnidad from './EliminaUnidad.js';
 

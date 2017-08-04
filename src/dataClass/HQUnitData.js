@@ -16,7 +16,6 @@ class HQUnitData{
       var opcionesReglas=[];
       var opcionesRango=[];
       var opcionesArmas=[];
-      var opcionesAyudantes=[];
       if(valorUnidad.opcionesReglas) opcionesReglas=Object.values(valorUnidad.opcionesReglas);
       if(valorUnidad.opcionesRango){
         Object.values(valorUnidad.opcionesRango).forEach(
@@ -24,7 +23,6 @@ class HQUnitData{
               var opcVet=Object.values(value.opcionesVeterania);
               opcionesRango.push(
               {
-                  costeBase:value.coste,
                   icono:value.icono,
                   nombre:value.nombre,
                   opcionesVeterania:opcVet
@@ -42,34 +40,24 @@ class HQUnitData{
           )
         );
       }
-      //TODO añadir el coste según la veteranía
-      if(valorUnidad.opcionesAyudantes){
-        Object.values(valorUnidad.opcionesAyudantes).forEach(
-          (value,index) => opcionesAyudantes.push(
-            {
-                activo:false,
-                icono:value.icono,
-                nombre:value.nombre
-            }
-          )
-        );
-      }
-
+console.log(opcionesRango);
       const auxVal={
-        coste:opcionesRango[0].opcionesVeterania[0].costeBase,
+        coste:opcionesRango[0].opcionesVeterania[0].coste,
         nombre: valorUnidad.nombre,
         icono:valorUnidad.icono,
+        iconosAyudantes:valorUnidad.iconosAyudantes,
+        maxAyudantes:valorUnidad.maxAyudantes,
         tamañoEscuadra:valorUnidad.tamañoEscuadra,
         opcionesArmas:valorUnidad.opcionesArma,
         facción:valorUnidad.facción,
         tipo:valorUnidad.tipo,
         opcionesAyudantes: valorUnidad.opcionesAyudantes,
         veteraniaEscogida:0,
-        armaEscogida:0,
         rangoEscogido:0,
         capacidadEnLista:valorUnidad.capacidadEnLista,
         opcionesReglasUnidad:opcionesReglas,
         opcionesRango:opcionesRango,
+        numAyudantes:0,
         tamEscuadra:1
         }
         //TODO comprobar si la opción del observador está definida al pintar
@@ -86,6 +74,10 @@ class HQUnitData{
       this.unidades[indice_u].veteraniaEscogida=parseInt(indice_v);
       this.calculaCosteEscuadra(indice_u);
     }
+    cambiaRango(indice_u,indice_r){
+      this.unidades[indice_u].rangoEscogido=parseInt(indice_r);
+      this.calculaCosteEscuadra(indice_u);
+    }
     //Método llamado cuando se pulsa sobre una regla especial opcional
     pulsarRegla(indice_d, indice_e){
       this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo=!this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo;
@@ -94,9 +86,11 @@ class HQUnitData{
     //Método usado para calcular el coste de cada escuadra
     calculaCosteEscuadra(index){
       var coste=0;
-      const opcEsc=this.unidades[index].opcionesRango[this.rangoEscogido].veteraniaEscogida;
+      const rangoEscogido=this.unidades[index].rangoEscogido;
+      const vetEscogida=this.unidades[index].veteraniaEscogida;
+      const opcEsc=this.unidades[index].opcionesRango[rangoEscogido].opcionesVeterania[vetEscogida];
       //Añadimos el coste de la escuadra según su veteranía
-      coste+=this.unidades[index].opcionesVeteraniaUn[opcEsc].costeBase;
+      coste+=parseInt(opcEsc.coste)+parseInt(this.unidades[index].numAyudantes)*parseInt(opcEsc.costeAyudante);
 
       this.unidades[index].coste=coste;
       this.calculaCosteTotal();

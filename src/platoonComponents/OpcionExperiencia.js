@@ -1,4 +1,4 @@
-//TODO Realizar componente para seleccionar el arma del sargento
+//Componente para seleccionar la experiencia de la unidad
 import React, { Component } from 'react';
 
 class OpcionExperiencia extends Component{

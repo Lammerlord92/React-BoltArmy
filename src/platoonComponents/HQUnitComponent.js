@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import EliminaUnidad from './EliminaUnidad.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import OpcionExperiencia from './OpcionExperiencia.js';
+import SeleccionaRango from './HQUnitSubcomponent/SeleccionaRango.js';
 
 
 class HQUnitComponent extends Component {
@@ -23,7 +24,7 @@ class HQUnitComponent extends Component {
                       </div>
 
                       <div id="stats" className="col-xs-6 col-sm-8 col-lg-10 text-left">
-                          <h5>{value.nombre}</h5>
+                          <h5>{value.nombre+" ("+value.opcionesRango[value.rangoEscogido].nombre+")"}</h5>
                           <h6>{value.opcionesRango[value.rangoEscogido].opcionesVeterania[value.veteraniaEscogida].nombre}</h6>
                        </div>
 
@@ -39,6 +40,10 @@ class HQUnitComponent extends Component {
                   <div id="unitOpt" className="row">
                     <div className="col-sm-4">
                         <h5>Tamaño de escuadra: {value.tamañoEscuadra}</h5>
+                        <SeleccionaRango opcionEscogida={value.rangoEscogido} opciones={value.opcionesRango} indUnidad={index}
+                        cambiaRango={
+                          (indice_u,indice_r,evento_d)=>this.props.UnitData.cambiaRango(indice_u,indice_r)
+                        }/>
                         <OpcionExperiencia opcionEscogida={value.veteraniaEscogida} opciones={value.opcionesRango[value.rangoEscogido].opcionesVeterania} indUnidad={index}
                         cambiaExperiencia={
                           (indice_u,indice_v,evento_d)=>this.props.UnitData.cambiaExperiencia(indice_u,indice_v)

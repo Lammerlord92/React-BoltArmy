@@ -50,7 +50,6 @@ class HQUnitData{
         opcionesArmas:opcionesArmas,
         facción:valorUnidad.facción,
         tipo:valorUnidad.tipo,
-        opcionesAyudantes: valorUnidad.opcionesAyudantes,
         veteraniaEscogida:0,
         rangoEscogido:0,
         capacidadEnLista:valorUnidad.capacidadEnLista,
@@ -60,7 +59,6 @@ class HQUnitData{
         tamEscuadra:1
         }
         //TODO comprobar si la opción del observador está definida al pintar
-        console.log(opcionesArmas);
         this.unidades.push(auxVal);
         this.calculaCosteTotal();
     }
@@ -68,6 +66,18 @@ class HQUnitData{
     eliminaUnidad(indice){
       this.unidades.splice(indice,1);
       this.calculaCosteTotal();
+    }
+
+    addAyudante(index){
+      this.unidades[index].numAyudantes+=1;
+      this.unidades[index].tamEscuadra+=1;
+      this.calculaCosteEscuadra(index);
+    }
+
+    quitaAyudante(index){
+      this.unidades[index].numAyudantes-=1;
+      this.unidades[index].tamEscuadra-=1;
+      this.calculaCosteEscuadra(index);
     }
 
     cambiaExperiencia(indice_u,indice_v){

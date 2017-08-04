@@ -6,6 +6,7 @@ import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import OpcionExperiencia from './OpcionExperiencia.js';
 import SeleccionaRango from './HQUnitSubcomponent/SeleccionaRango.js';
 import MostrarArmas from './HQUnitSubcomponent/MostrarArmas.js';
+import SeleccionaAyudantes from './HQUnitSubcomponent/SeleccionaAyudantes.js';
 
 
 class HQUnitComponent extends Component {
@@ -41,7 +42,17 @@ class HQUnitComponent extends Component {
                 <div className="panel-body">
                   <div id="unitOpt" className="row">
                     <div className="col-sm-4">
-                        <h5>Tamaño de escuadra: {value.tamañoEscuadra}</h5>
+                        <h5>Tamaño de escuadra: {value.tamEscuadra}</h5>
+                        <SeleccionaAyudantes numAyudantes={value.numAyudantes} maxAyudantes={value.maxAyudantes} indUnidad={index} iconosAyudantes={value.iconosAyudantes} iconoOf={value.icono}
+                        addAyudante={
+                          (indice_u,evento_d)=>{this.props.UnitData.addAyudante(indice_u)}
+                        }
+                        quitaAyudante={
+                          (indice_u,evento_d)=>{this.props.UnitData.quitaAyudante(indice_u)}
+                        }/>
+                        <MostrarArmas opciones={value.opcionesArmas}/>
+                    </div>
+                    <div id="armas" className="col-sm-4">
                         <SeleccionaRango opcionEscogida={value.rangoEscogido} opciones={value.opcionesRango} indUnidad={index}
                         cambiaRango={
                           (indice_u,indice_r,evento_d)=>this.props.UnitData.cambiaRango(indice_u,indice_r)
@@ -50,9 +61,6 @@ class HQUnitComponent extends Component {
                         cambiaExperiencia={
                           (indice_u,indice_v,evento_d)=>this.props.UnitData.cambiaExperiencia(indice_u,indice_v)
                         }/>
-                    </div>
-                    <div id="armas" className="col-sm-4">
-                        <MostrarArmas opciones={value.opcionesArmas}/>
                     </div>
                     <div id="reglas" className="col-sm-4">
                       <OpcionesReglasUnidad indiceUn={index} unit={this.props.UnitData} opcionesReglasUnidad={value.opcionesReglasUnidad}/>

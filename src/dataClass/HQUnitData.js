@@ -30,9 +30,9 @@ class HQUnitData{
             }
         );
       }
-      if(valorUnidad.opcionesArma){
-        Object.values(valorUnidad.opcionesArma).forEach(
-          (value,index) => opcionesArma.push(
+      if(valorUnidad.opcionesArmas){
+        Object.values(valorUnidad.opcionesArmas).forEach(
+          (value,index) => opcionesArmas.push(
             {
                 icono:value.icono,
                 nombre:value.nombre
@@ -40,7 +40,6 @@ class HQUnitData{
           )
         );
       }
-console.log(opcionesRango);
       const auxVal={
         coste:opcionesRango[0].opcionesVeterania[0].coste,
         nombre: valorUnidad.nombre,
@@ -48,7 +47,7 @@ console.log(opcionesRango);
         iconosAyudantes:valorUnidad.iconosAyudantes,
         maxAyudantes:valorUnidad.maxAyudantes,
         tamañoEscuadra:valorUnidad.tamañoEscuadra,
-        opcionesArmas:valorUnidad.opcionesArma,
+        opcionesArmas:opcionesArmas,
         facción:valorUnidad.facción,
         tipo:valorUnidad.tipo,
         opcionesAyudantes: valorUnidad.opcionesAyudantes,
@@ -61,6 +60,7 @@ console.log(opcionesRango);
         tamEscuadra:1
         }
         //TODO comprobar si la opción del observador está definida al pintar
+        console.log(opcionesArmas);
         this.unidades.push(auxVal);
         this.calculaCosteTotal();
     }

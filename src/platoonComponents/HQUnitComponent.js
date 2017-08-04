@@ -5,11 +5,13 @@ import EliminaUnidad from './EliminaUnidad.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import OpcionExperiencia from './OpcionExperiencia.js';
 import SeleccionaRango from './HQUnitSubcomponent/SeleccionaRango.js';
+import MostrarArmas from './HQUnitSubcomponent/MostrarArmas.js';
 
 
 class HQUnitComponent extends Component {
   render() {
     let units_div=[];
+    let iconosArmas=[];
     const llenar_units_div = this.props.UnitData.unidades.forEach(
         //valores e índice del array
         (value,index)=>(
@@ -50,7 +52,7 @@ class HQUnitComponent extends Component {
                         }/>
                     </div>
                     <div id="armas" className="col-sm-4">
-
+                        <MostrarArmas opciones={value.opcionesArmas}/>
                     </div>
                     <div id="reglas" className="col-sm-4">
                       <OpcionesReglasUnidad indiceUn={index} unit={this.props.UnitData} opcionesReglasUnidad={value.opcionesReglasUnidad}/>

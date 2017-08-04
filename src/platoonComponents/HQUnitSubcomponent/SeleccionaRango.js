@@ -1,4 +1,3 @@
-//TODO
 import React, { Component } from 'react';
 
 class SeleccionaRango extends Component{

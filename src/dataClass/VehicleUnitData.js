@@ -17,7 +17,6 @@ class VehicleUnitData{
       var opcionesVeterania=[];
 
       if(valorUnidad.veterania) opcionesVeterania=Object.values(valorUnidad.veterania);
-      console.log(opcionesVeterania);
       const auxVal={
         coste:opcionesVeterania[0].coste,
         nombre: valorUnidad.nombre,
@@ -42,20 +41,20 @@ class VehicleUnitData{
 
     cambiaExperiencia(indice_u,indice_v){
       this.unidades[indice_u].veteraniaEscogida=parseInt(indice_v);
-      this.calculaCosteEscuadra(indice_u);
+      this.calculaCoste(indice_u);
     }
     //Método llamado cuando se pulsa sobre una regla especial opcional
     pulsarRegla(indice_d, indice_e){
       this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo=!this.unidades[indice_d].opcionesReglasUnidad[indice_e].activo;
-      this.calculaCosteEscuadra(indice_d);
+      this.calculaCoste(indice_d);
     }
     //Método usado para calcular el coste de cada escuadra
     calculaCoste(index){
       var coste=0;
       const opcEsc=this.unidades[index].veteraniaEscogida;
       //Añadimos el coste de la escuadra según su veteranía
-      coste+=this.unidades[index].opcionesVeteraniaUn[opcEsc].costeBase;
-
+      coste+=this.unidades[index].opcionesVeterania[opcEsc].coste;
+      console.log(coste);
       this.unidades[index].coste=coste;
       this.calculaCosteTotal();
     }

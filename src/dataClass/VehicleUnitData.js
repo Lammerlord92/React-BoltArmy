@@ -15,14 +15,28 @@ class VehicleUnitData{
     añadeVehiculo(valorUnidad){
       var opcionesReglas=[];
       var opcionesVeterania=[];
-
+      var opcionesArmas=[]
+      if(valorUnidad.armamento){
+        Object.values(valorUnidad.armamento).forEach(
+          (value,index)=>{
+            //TODO quitar opciones y poner solo opcionesArmamento o viceversa
+              var opcArm=Object.values(value.opcionesArmamento.opciones);
+              opcionesArmas.push(
+              {
+                  nombre:value.nombre,
+                  opcionEscogida:0,
+                  opciones:opcArm
+              })
+            }
+        );
+      }
       if(valorUnidad.veterania) opcionesVeterania=Object.values(valorUnidad.veterania);
       const auxVal={
         coste:opcionesVeterania[0].coste,
         nombre: valorUnidad.nombre,
         icono:valorUnidad.icono,
         blindaje:valorUnidad.blindaje,
-        arma:"Cañon antitanque pesado",
+        armamento:opcionesArmas,
         facción:valorUnidad.facción,
         tipo:valorUnidad.tipo,
         veteraniaEscogida:0,
@@ -37,6 +51,11 @@ class VehicleUnitData{
     eliminaUnidad(indice){
       this.unidades.splice(indice,1);
       this.calculaCosteTotal();
+    }
+
+    cambiaArmaSeleccionada(indice_u,indice_opcArma,indice_armaSel){
+      this.unidades[indice_u].armamento[indice_opcArma].opcionEscogida=parseInt(indice_armaSel);
+      this.calculaCoste(indice_u);
     }
 
     cambiaExperiencia(indice_u,indice_v){
@@ -54,7 +73,9 @@ class VehicleUnitData{
       const opcEsc=this.unidades[index].veteraniaEscogida;
       //Añadimos el coste de la escuadra según su veteranía
       coste+=this.unidades[index].opcionesVeterania[opcEsc].coste;
-      console.log(coste);
+      this.unidades[index].armamento.forEach(
+        (value,index)=>coste+=value.opciones[value.opcionEscogida].coste
+      )
       this.unidades[index].coste=coste;
       this.calculaCosteTotal();
     }

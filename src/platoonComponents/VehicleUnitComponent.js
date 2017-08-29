@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import OpcionExperiencia from './OpcionExperiencia.js';
 import OpcionesReglasUnidad from './OpcionesReglasUnidad.js';
 import EliminaUnidad from './EliminaUnidad.js';
+import OpcionesArmas from './VehicleUnitSubComponent/OpcionesArmas.js'
 
 class VehicleUnitComponent extends Component {
   render() {
@@ -23,6 +24,7 @@ class VehicleUnitComponent extends Component {
                       <div id="stats" className="col-xs-6 col-sm-8 col-lg-10 text-left">
                           <h5>{value.nombre}</h5>
                           <h6>{value.opcionesVeterania[value.veteraniaEscogida].nombre}</h6>
+                          <h6>{value.tipo}</h6>
                        </div>
 
                        <div id="eliminaUnidad" className="col-xs-3 col-sm-1 text-center">
@@ -42,8 +44,7 @@ class VehicleUnitComponent extends Component {
                         }/>
                     </div>
                     <div id="armas" className="col-sm-4">
-                        <h5>Arma</h5>
-                        {value.arma}
+                        <OpcionesArmas vehic={this.props.UnitData.unidades[index]} UnitData={this.props.UnitData} unidad={index}/>
                     </div>
                     <div id="reglas" className="col-sm-4">
                     </div>

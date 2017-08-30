@@ -20,7 +20,7 @@ class VehicleUnitData{
         Object.values(valorUnidad.armamento).forEach(
           (value,index)=>{
             //TODO quitar opciones y poner solo opcionesArmamento o viceversa
-              var opcArm=Object.values(value.opcionesArmamento.opciones);
+              var opcArm=Object.values(value.opcionesArmamento);
               opcionesArmas.push(
               {
                   nombre:value.nombre,
@@ -54,7 +54,7 @@ class VehicleUnitData{
     }
 
     cambiaArmaSeleccionada(indice_u,indice_opcArma,indice_armaSel){
-      this.unidades[indice_u].armamento[indice_opcArma].opcionEscogida=parseInt(indice_armaSel);
+      this.unidades[parseInt(indice_u,10)].armamento[parseInt(indice_opcArma,10)].opcionEscogida=parseInt(indice_armaSel,10);
       this.calculaCoste(indice_u);
     }
 
